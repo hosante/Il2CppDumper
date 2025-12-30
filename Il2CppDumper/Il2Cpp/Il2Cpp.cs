@@ -52,7 +52,7 @@ namespace Il2CppDumper
         {
             if (codeRegistration != 0)
             {
-                var limit = this is WebAssemblyMemory ? 0x35000u : 0x50000u; //TODO
+                var limit = this is WebAssemblyMemory ? 0x70000u : 0x100000u; //TODO
                 if (Version >= 24.2)
                 {
                     pCodeRegistration = MapVATR<Il2CppCodeRegistration>(codeRegistration);
@@ -61,11 +61,6 @@ namespace Il2CppDumper
                         if (pCodeRegistration.genericMethodPointersCount > limit)
                         {
                             codeRegistration -= PointerSize * 2;
-                        }
-                        else
-                        {
-                            Version = 29;
-                            Console.WriteLine($"Change il2cpp version to: {Version}");
                         }
                     }
                     if (Version == 29)
